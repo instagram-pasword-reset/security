@@ -3,112 +3,129 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hesap Ayarları - Şifre Değiştir</title>
+    <title>Şifreyi Değiştir</title>
     <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
         body {
-            background-color: #ffffff;
-            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #f5f5f5;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            margin: 0;
-            color: #333333;
-        }
-
-        .form-container {
-            width: 100%;
-            max-width: 360px;
             padding: 20px;
-            box-sizing: border-box;
         }
 
-        .user-header {
-            text-align: center;
-            margin-bottom: 24px;
+        .container {
+            width: 100%;
+            max-width: 400px;
+            display: flex;
+            flex-direction: column;
+            min-height: 90vh;
+            justify-content: space-between;
+        }
+
+        .content {
+            display: flex;
+            flex-direction: column;
         }
 
         .username {
-            font-weight: bold;
-            font-size: 16px;
-            margin-bottom: 8px;
+            font-size: 14px;
+            color: #a8a8a8;
+            margin-bottom: 12px;
+            font-weight: 400;
         }
 
-        .page-title {
-            font-size: 22px;
-            font-weight: bold;
-            margin: 0 0 12px 0;
+        h1 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #ffffff;
         }
 
-        .info-text {
-            font-size: 13px;
-            color: #666666;
+        .description {
+            font-size: 14px;
+            color: #a8a8a8;
             line-height: 1.4;
-            margin: 0;
+            margin-bottom: 24px;
         }
 
         .input-group {
-            margin-top: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 16px;
         }
 
-        .input-group input {
+        .input-field {
             width: 100%;
-            padding: 12px;
-            border: 1px solid #cccccc;
-            border-radius: 8px;
-            box-sizing: border-box;
+            background-color: #121212;
+            border: 1px solid #363636;
+            border-radius: 12px;
+            padding: 16px;
+            color: #ffffff;
             font-size: 14px;
             outline: none;
+            transition: border-color 0.2s ease;
         }
 
-        .input-group input:focus {
-            border-color: #0066cc;
+        .input-field::placeholder {
+            color: #737373;
         }
 
-        .btn-submit {
+        .input-field:focus {
+            border-color: #555555;
+        }
+
+        .forgot-password {
+            color: #0095f6;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            align-self: flex-start;
+        }
+
+        .submit-btn {
             width: 100%;
-            padding: 12px;
-            background-color: #0066cc;
-            color: #ffffff;
+            background-color: #00376b;
+            color: #78a6dc;
             border: none;
-            border-radius: 20px;
-            font-size: 15px;
-            font-weight: bold;
-            margin-top: 24px;
+            border-radius: 24px;
+            padding: 14px;
+            font-size: 14px;
+            font-weight: 600;
             cursor: pointer;
-        }
-
-        .btn-submit:hover {
-            background-color: #0052a3;
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
 
-    <div class="form-container">
-        <div class="user-header">
-            <div class="username">kullanici_adi</div>
-            <h1 class="page-title">Şifreyi Değiştir</h1>
-            <p class="info-text">
-                Hesap güvenliğiniz için yeni şifrenizin güçlü ve benzersiz olduğundan emin olun.
+    <div class="container">
+        <div class="content">
+            <span class="username">w.ramiz_ •</span>
+            <h1>Şifreyi değiştir</h1>
+            <p class="description">
+                Şifren en az 6 karakter olmalı ve rakamlar, harfler ve özel karakterlerden (!$%@%) oluşmalıdır.
             </p>
+
+            <form class="input-group" action="#" method="POST">
+                <input type="password" class="input-field" placeholder="Mevcut şifre (Güncelleme 17.07.2026)" required>
+                <input type="password" class="input-field" placeholder="Yeni şifre" required>
+                <input type="password" class="input-field" placeholder="Yeni şifreyi tekrar yaz" required>
+            </form>
+
+            <a href="#" class="forgot-password">Şifreni mi unuttun?</a>
         </div>
 
-        <form action="#" method="post">
-            <div class="input-group">
-                <input type="password" placeholder="Mevcut şifre" required>
-            </div>
-            
-            <div class="input-group">
-                <input type="password" placeholder="Yeni şifre" required>
-            </div>
-            
-            <div class="input-group">
-                <input type="password" placeholder="Yeni şifreyi tekrar yaz" required>
-            </div>
-
-            <button type="submit" class="btn-submit">Şifreyi Güncelle</button>
-        </form>
+        <button type="submit" class="submit-btn">Şifreyi değiştir</button>
     </div>
 
 </body>
