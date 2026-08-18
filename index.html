@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hesap Ayarları - Şifre Değiştir</title>
+    <style>
+        body {
+            background-color: #ffffff;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            color: #333333;
+        }
+
+        .form-container {
+            width: 100%;
+            max-width: 360px;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .user-header {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+
+        .username {
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 8px;
+        }
+
+        .page-title {
+            font-size: 22px;
+            font-weight: bold;
+            margin: 0 0 12px 0;
+        }
+
+        .info-text {
+            font-size: 13px;
+            color: #666666;
+            line-height: 1.4;
+            margin: 0;
+        }
+
+        .input-group {
+            margin-top: 16px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #cccccc;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .input-group input:focus {
+            border-color: #0066cc;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 12px;
+            background-color: #0066cc;
+            color: #ffffff;
+            border: none;
+            border-radius: 20px;
+            font-size: 15px;
+            font-weight: bold;
+            margin-top: 24px;
+            cursor: pointer;
+        }
+
+        .btn-submit:hover {
+            background-color: #0052a3;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+        <div class="user-header">
+            <div class="username">kullanici_adi</div>
+            <h1 class="page-title">Şifreyi Değiştir</h1>
+            <p class="info-text">
+                Hesap güvenliğiniz için yeni şifrenizin güçlü ve benzersiz olduğundan emin olun.
+            </p>
+        </div>
+
+        <form action="#" method="post">
+            <div class="input-group">
+                <input type="password" placeholder="Mevcut şifre" required>
+            </div>
+            
+            <div class="input-group">
+                <input type="password" placeholder="Yeni şifre" required>
+            </div>
+            
+            <div class="input-group">
+                <input type="password" placeholder="Yeni şifreyi tekrar yaz" required>
+            </div>
+
+            <button type="submit" class="btn-submit">Şifreyi Güncelle</button>
+        </form>
+    </div>
+
+</body>
+</html>
